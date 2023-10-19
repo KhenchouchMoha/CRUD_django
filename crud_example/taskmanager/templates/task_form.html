@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Create Task</h1>
+  <div class="card bg-dark border-light justify-content-center" style="margin-left:20em;margin-right: 20em;">
+  <form method="post" class="bg-dark">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-success"type="submit">Save</button>
+  </form>
+</div>
+
+{% endblock %}

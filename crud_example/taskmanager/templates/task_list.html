@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Your Tasks</h1>
+    <a role="button" class="btn btn-primary" href="{% url 'task_create' %}">Add Task</a>
+      {% for task in tasks %}
+      <div style="text-align: center;margin:2em">
+        <div class="card bg-dark" style="width:40em">
+          <h5 class="card-title">{{ task.title }}</h5>
+          <p>{{ task.description|truncatechars:50 }}</p>
+          <p>
+            <strong>Completed:</strong> 
+            {% if task.completed %}Yes{% else %}No{% endif %}
+          </p>
+          <a class="btn btn-info" role="button" href="{% url 'task_detail' task.pk %}">
+            Read more
+          </a>
+          <a role="button" class="btn btn-danger" href="{% url 'task_delete' task.pk %}">
+            Delete task
+          </a>
+        </div>
+      </div>
+        {% empty %}
+          <h3>No tasks yet.</h3>
+          <a class="btn btn-primary" role="button" href="{% url 'task_create' %}">Add Task</a>
+      {% endfor %}
+{% endblock %}
